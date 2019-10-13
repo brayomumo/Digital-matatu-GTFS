@@ -9,8 +9,13 @@ var maxLng;
 
 var strokeWidth = 3;
 
-var map = new L.Map("map", {center: [35.78, -78.68], zoom: 13})
-map.addLayer(new L.StamenTileLayer("toner-lite"));
+var map = new L.Map("map", {center: [-1.285325, 36.834509], zoom: 15})
+const attribution  = '&copy;<a href= "https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors';
+const api_url = 'https://api.wheretheiss.at/v1/satellites/25544';
+const tileUrl = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
+const tiles = L.tileLayer(tileUrl, { attribution } )
+tiles.addTo(map)
+// map.addLayer(new L.StamenTileLayer("toner-lite"));
 
 var svg = d3.select(map.getPanes().overlayPane).append("svg"),
     stopHuskGroup = svg.append("g").attr("class", "stop-husk-group leaflet-zoom-hide"),
