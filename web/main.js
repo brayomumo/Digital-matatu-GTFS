@@ -9,7 +9,7 @@ var maxLng;
 
 var strokeWidth = 3;
 
-var map = new L.Map("map", {center: [-1.285325, 36.834509], zoom: 15})
+var map = new L.Map("map", {center: [-1.285325, 36.834509], zoom: 10})
 const attribution  = '&copy;<a href= "https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors';
 const api_url = 'https://api.wheretheiss.at/v1/satellites/25544';
 const tileUrl = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
@@ -106,7 +106,7 @@ var drawShapes = function(shapeRows) {
 var resetShapes = function() {
   pointCache = {};
 
-  strokeWidth = map.getZoom() < 9 ? 1 : (map.getZoom() - 8);
+  strokeWidth = map.getZoom() < 8 ? 1 : (map.getZoom() - 7);
 
   var topLeft = projectPoint([maxLat, minLng]);
   var bottomRight = projectPoint([minLat, maxLng]);
@@ -125,7 +125,7 @@ var resetShapes = function() {
   shapeGroup.attr("transform", "translate(" + -topLeft.x + "," + -topLeft.y + ")");
 
   shapeHusk.attr("d", function(d) { return line(d.value); })
-  .style({'stroke-width': strokeWidth * 2});
+  .style({'stroke-width': strokeWidth * 1});
 
   feature.attr("d", function(d) { return line(d.value); })
   .style({'stroke-width': strokeWidth});
@@ -156,7 +156,7 @@ var drawStops = function(data) {
   .attr('r', strokeWidth * 2)
   .attr('cx', function(d) { return projectPoint([d.lat, d.lon]).x; })
   .attr('cy', function(d) { return projectPoint([d.lat, d.lon]).y; })
-  .style('fill', '#fff');
+  .style('fill', '#333333');
 
   stopHusk.exit().remove();
 
