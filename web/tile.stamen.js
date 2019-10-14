@@ -122,41 +122,41 @@
         }
     }
     
-    /*
-     * StamenTileLayer for modestmaps-js
-     * <https://github.com/modestmaps/modestmaps-js/>
-     *
-     * Works with both 1.x and 2.x by checking for the existence of MM.Template.
-     */
-    if (typeof MM === "object") {
-        var ModestTemplate = (typeof MM.Template === "function")
-            ? MM.Template
-            : MM.TemplatedMapProvider;
-        MM.StamenTileLayer = function(name) {
-            var provider = getProvider(name);
-            this._provider = provider;
-            MM.Layer.call(this, new ModestTemplate(provider.url, provider.subdomains));
-            this.provider.setZoomRange(provider.minZoom, provider.maxZoom);
-            this.attribution = provider.attribution;
-        };
+    // /*
+    //  * StamenTileLayer for modestmaps-js
+    //  * <https://github.com/modestmaps/modestmaps-js/>
+    //  *
+    //  * Works with both 1.x and 2.x by checking for the existence of MM.Template.
+    //  */
+    // if (typeof MM === "object") {
+    //     var ModestTemplate = (typeof MM.Template === "function")
+    //         ? MM.Template
+    //         : MM.TemplatedMapProvider;
+    //     MM.StamenTileLayer = function(name) {
+    //         var provider = getProvider(name);
+    //         this._provider = provider;
+    //         MM.Layer.call(this, new ModestTemplate(provider.url, provider.subdomains));
+    //         this.provider.setZoomRange(provider.minZoom, provider.maxZoom);
+    //         this.attribution = provider.attribution;
+    //     };
     
-        MM.StamenTileLayer.prototype = {
-            setCoordLimits: function(map) {
-                var provider = this._provider;
-                if (provider.extent) {
-                    map.coordLimits = [
-                        map.locationCoordinate(provider.extent[0]).zoomTo(provider.minZoom),
-                        map.locationCoordinate(provider.extent[1]).zoomTo(provider.maxZoom)
-                    ];
-                    return true;
-                } else {
-                    return false;
-                }
-            }
-        };
+    //     MM.StamenTileLayer.prototype = {
+    //         setCoordLimits: function(map) {
+    //             var provider = this._provider;
+    //             if (provider.extent) {
+    //                 map.coordLimits = [
+    //                     map.locationCoordinate(provider.extent[0]).zoomTo(provider.minZoom),
+    //                     map.locationCoordinate(provider.extent[1]).zoomTo(provider.maxZoom)
+    //                 ];
+    //                 return true;
+    //             } else {
+    //                 return false;
+    //             }
+    //         }
+    //     };
     
-        MM.extend(MM.StamenTileLayer, MM.Layer);
-    }
+    //     MM.extend(MM.StamenTileLayer, MM.Layer);
+    // }
     
     /*
      * StamenTileLayer for Leaflet
@@ -233,11 +233,7 @@
             }
         });
     }
-    
-    /*
-     * StamenMapType for Google Maps API V3
-     * <https://developers.google.com/maps/documentation/javascript/>
-     */
+
     if (typeof google === "object" && typeof google.maps === "object") {
         google.maps.StamenMapType = function(name) {
             var provider = getProvider(name),
