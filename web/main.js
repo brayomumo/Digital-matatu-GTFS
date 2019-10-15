@@ -2,10 +2,12 @@ var feature;
 var stopMarker;
 var shapeHusk;
 var stopHusk;
+var layerEaglenest
 var minLat;
 var maxLat;
 var minLng;
 var maxLng;
+
 
 var strokeWidth = 3;
 
@@ -15,7 +17,7 @@ const api_url = 'https://api.wheretheiss.at/v1/satellites/25544';
 const tileUrl = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
 const tiles = L.tileLayer(tileUrl, { attribution } )
 tiles.addTo(map)
-// map.addLayer(new L.StamenTileLayer("toner-lite"));
+
 
 var svg = d3.select(map.getPanes().overlayPane).append("svg"),
     stopHuskGroup = svg.append("g").attr("class", "stop-husk-group leaflet-zoom-hide"),
@@ -31,25 +33,125 @@ var projectPoint = function(point) {
     }
     return pointCache[key];
 }
-// Geo locating a client
+function csv2array(data, delimeter) {
+  // Retrieve the delimeter
+  if (delimeter == undefined) 
+    delimeter = ',';
+  if (delimeter && delimeter.length > 1)
+    delimeter = ',';
 
-if ("geolocation" in navigator) {
-  // check if geolocation is supported/enabled on current browser
-  navigator.geolocation.getCurrentPosition(
-   function success(position) {
-     // for when getting location is a success
-     console.log('latitude', position.coords.latitude, 
-                 'longitude', position.coords.longitude);
-   },
-  function error(error_message) {
-    // for when getting location results in an error
-    console.error('An error has occured while retrieving location', error_message)
+  // initialize variables
+  var newline = '\n';
+  var eof = '';
+  var i = 0;
+  var c = data.charAt(i);
+  var row = 0;
+  var col = 0;
+  var array = new Array();
+
+  while (c != eof) {
+    // skip whitespaces
+    while (c == ' ' || c == '\t' || c == '\r') {
+      c = data.charAt(++i); // read next char
+    }
+    
+    // get value
+    var value = "";
+    if (c == '\"') {
+      // value enclosed by double-quotes
+      c = data.charAt(++i);
+      
+      do {
+        if (c != '\"') {
+          // read a regular character and go to the next character
+          value += c;
+          c = data.charAt(++i);
+        }
+        
+        if (c == '\"') {
+          // check for escaped double-quote
+          var cnext = data.charAt(i+1);
+          if (cnext == '\"') {
+            // this is an escaped double-quote. 
+            // Add a double-quote to the value, and move two characters ahead.
+            value += '\"';
+            i += 2;
+            c = data.charAt(i);
+          }
+        }
+      }
+      while (c != eof && c != '\"');
+      
+      if (c == eof) {
+        throw "Unexpected end of data, double-quote expected";
+      }
+
+      c = data.charAt(++i);
+    }
+    else {
+      // value without quotes
+      while (c != eof && c != delimeter && c!= newline && c != ' ' && c != '\t' && c != '\r') {
+        value += c;
+        c = data.charAt(++i);
+      }
+    }
+
+    // add the value to the array
+    if (array.length <= row) 
+      array.push(new Array());
+    array[row].push(value);
+    
+    // skip whitespaces
+    while (c == ' ' || c == '\t' || c == '\r') {
+      c = data.charAt(++i);
+    }
+
+    // go to the next row or column
+    if (c == delimeter) {
+      // to the next column
+      col++;
+    }
+    else if (c == newline) {
+      // to the next row
+      col = 0;
+      row++;
+    }
+    else if (c != eof) {
+      // unexpected character
+      throw "Delimiter expected after character " + i;
+    }
+    
+    // go to the next character
+    c = data.charAt(++i);
   }  
-)} else {
-  // geolocation is not supported
-  // get your location some other way
-  console.log('geolocation is not enabled on this browser')
+  
+  return array;
 }
+const planes = document.getElementById('input').innerHTML
+console.log(planes)
+// var reader = new FileReader();
+// reader.onload = function(e) {
+//   var text = reader.result;
+// }
+
+// reader.readAsText(abuseData);
+// var marker = L.marker([-1.286023, 36.825433]).addTo(map);
+// var popup = marker.bindPopup('<b>Abuse case 1</b><br />46 bus station abuse case.');
+// var planes =[
+//   ['assult',-1.245280, 36.867195],
+//  ['discrimanation',-1.286023, 36.825433],
+//  ['discrimanation',-1.284462, 36.832510],
+//  ['discrimanation',-1.286395, 36.834944]
+// ]
+for (var i = 0; i < planes.length; i++) {
+  marker = new L.marker([planes[i][1],planes[i][2]])
+    .bindPopup(" <b>Abuse type: </b>" + planes[i][0])
+    .addTo(map);
+}
+  
+
+
+
 var color = d3.scale.category20();
 
 var line = d3.svg.line()
@@ -83,7 +185,27 @@ var drawShapes = function(shapeRows) {
   svg.attr("width", bottomRight.x - topLeft.x)
   .attr("height", bottomRight.y - topLeft.y)
   .style("left", topLeft.x + "px")
-  .style("top", topLeft.y + "px");
+  .style("top", topLeft.y + "px").on("mouseover", function(){
+    tooltip.style("display", null)
+  }).on("mouseout", function(){
+    tooltip.style("display", None)
+  }).on("mousemove", function(d){
+    var xPos = d3.mouse(this)[0] -15
+    var yPos = d3.mouse(this)[1] - 55
+    tooltip.attr("transform", "translate("+ xPos + "," + yPos + ")");
+    tooltp.select("text").text(d.name + ":" + d.rank);
+  });
+
+  var tooltip = svg.append("g")
+    .attr("class", tooltip)
+    .style("display", "none");
+
+  tooltip.append("text")
+    .attr("x", 15)
+    .attr("dy", "1.2em")
+    .style("font-size", "1,25em")
+    .attr("font-weight", "bold");
+
 
   shapeHuskGroup.attr("transform", "translate(" + -topLeft.x + "," + -topLeft.y + ")");
   shapeGroup.attr("transform", "translate(" + -topLeft.x + "," + -topLeft.y + ")");
@@ -250,6 +372,7 @@ var combineShapeRows = function(previous, current, index) {
     return previous;
 };
 
+
 var load_shapes = function(csv) {
     var data = d3.csv.parse(csv, cleanShapeRow);
     drawShapes(data);
@@ -262,11 +385,11 @@ var load_stops = function(csv) {
 
 var upload_button = function(el) {
     var uploader = document.getElementById(el);
-
+    
     var handleFiles = function() {
         parseGtfs(this.files[0], {
             'shapes.txt': load_shapes,
-            //'stops.txt': load_stops
+            // 'stops.txt': load_stops
         });
     };
 
