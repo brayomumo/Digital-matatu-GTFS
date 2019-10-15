@@ -1,0 +1,5 @@
+abuse_type, abuse_log, abuse_lat
+abuseType1,-1.245280, 36.867195
+abuseType2,-1.286023, 36.825433
+abuseType3,-1.284462, 36.832510
+abuseType4,-1.286395, 36.834944
