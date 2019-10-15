@@ -276,14 +276,15 @@ function handleFileLoad(event) {
   console.log(event);
   var madata =  event.target.result;
   madata = madata.split("\n")
-  var planes = []
+  var allData = []
   for (var i = 1; i < madata.length; i++){
     // console.log(madata[i])
-    planes.push(madata[i])
+    allData.push(madata[i])
   }
   // console.log(planes)
-  for (var i = 0; i < planes.length; i++) {
-    planes = planes[i].split(",")
+  for (var i = 0; i < allData.length; i++) {
+    planes = allData[i].split(",")
+    console.log(planes)
     marker = new L.marker([planes[1],planes[2]])
       .bindPopup(" <b>Abuse type: </b>" + planes[0])
       .addTo(map);
