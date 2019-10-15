@@ -33,121 +33,34 @@ var projectPoint = function(point) {
     }
     return pointCache[key];
 }
-function csv2array(data, delimeter) {
-  // Retrieve the delimeter
-  if (delimeter == undefined) 
-    delimeter = ',';
-  if (delimeter && delimeter.length > 1)
-    delimeter = ',';
 
-  // initialize variables
-  var newline = '\n';
-  var eof = '';
-  var i = 0;
-  var c = data.charAt(i);
-  var row = 0;
-  var col = 0;
-  var array = new Array();
-
-  while (c != eof) {
-    // skip whitespaces
-    while (c == ' ' || c == '\t' || c == '\r') {
-      c = data.charAt(++i); // read next char
-    }
-    
-    // get value
-    var value = "";
-    if (c == '\"') {
-      // value enclosed by double-quotes
-      c = data.charAt(++i);
-      
-      do {
-        if (c != '\"') {
-          // read a regular character and go to the next character
-          value += c;
-          c = data.charAt(++i);
-        }
-        
-        if (c == '\"') {
-          // check for escaped double-quote
-          var cnext = data.charAt(i+1);
-          if (cnext == '\"') {
-            // this is an escaped double-quote. 
-            // Add a double-quote to the value, and move two characters ahead.
-            value += '\"';
-            i += 2;
-            c = data.charAt(i);
-          }
-        }
-      }
-      while (c != eof && c != '\"');
-      
-      if (c == eof) {
-        throw "Unexpected end of data, double-quote expected";
-      }
-
-      c = data.charAt(++i);
-    }
-    else {
-      // value without quotes
-      while (c != eof && c != delimeter && c!= newline && c != ' ' && c != '\t' && c != '\r') {
-        value += c;
-        c = data.charAt(++i);
-      }
-    }
-
-    // add the value to the array
-    if (array.length <= row) 
-      array.push(new Array());
-    array[row].push(value);
-    
-    // skip whitespaces
-    while (c == ' ' || c == '\t' || c == '\r') {
-      c = data.charAt(++i);
-    }
-
-    // go to the next row or column
-    if (c == delimeter) {
-      // to the next column
-      col++;
-    }
-    else if (c == newline) {
-      // to the next row
-      col = 0;
-      row++;
-    }
-    else if (c != eof) {
-      // unexpected character
-      throw "Delimiter expected after character " + i;
-    }
-    
-    // go to the next character
-    c = data.charAt(++i);
-  }  
-  
-  return array;
+function init() {
+  document.getElementById('fileInput').addEventListener('change', handleFileSelect, false);
 }
-// const planes = document.getElementById('input').innerHTML
-console.log(planes)
-// var reader = new FileReader();
-// reader.onload = function(e) {
-//   var text = reader.result;
-// }
 
-// reader.readAsText(abuseData);
-// var marker = L.marker([-1.286023, 36.825433]).addTo(map);
-// var popup = marker.bindPopup('<b>Abuse case 1</b><br />46 bus station abuse case.');
-var planes =[
-  ['assult',-1.245280, 36.867195],
- ['discrimanation',-1.286023, 36.825433],
- ['discrimanation',-1.284462, 36.832510],
- ['discrimanation',-1.286395, 36.834944]
-]
-for (var i = 0; i < planes.length; i++) {
-  marker = new L.marker([planes[i][1],planes[i][2]])
-    .bindPopup(" <b>Abuse type: </b>" + planes[i][0])
-    .addTo(map);
+function handleFileSelect(event) {
+  const reader = new FileReader()
+  reader.onload = handleFileLoad;
+  reader.readAsText(event.target.files[0])
 }
+
+function handleFileLoad(event) {
+  console.log(event);
+  var madata =  event.target.result;
+  madata = madata.split("\n")
+  var planes = []
+  for (var i = 1; i < madata.length; i++){
+    console.log(madata[i])
+    planes.append(i)
+  }
+  console.log(planes)
+  // for (var i = 0; i < planes.length; i++) {
+  //   marker = new L.marker([planes[i][1],planes[i][2]])
+  //     .bindPopup(" <b>Abuse type: </b>" + planes[i][0])
+  //     .addTo(map);
+  // }
+}
+
   
 
 
@@ -372,7 +285,6 @@ var combineShapeRows = function(previous, current, index) {
     return previous;
 };
 
-
 var load_shapes = function(csv) {
     var data = d3.csv.parse(csv, cleanShapeRow);
     drawShapes(data);
@@ -395,6 +307,7 @@ var upload_button = function(el) {
 
     uploader.addEventListener("change", handleFiles, false);
 };
+
 
 upload_button("uploader");
 
