@@ -16,10 +16,21 @@
         #map {
             height: 100%;
         }
+        .tooltip{
+            text-decoration: underline;
+        }
 
         #uploader {
             position: absolute;
             top: 10px;
+            left: 50px;
+            background-color: white;
+            border: 2px solid black;
+            padding: 10px 20px;
+        }
+        #input{
+            position: absolute;
+            top: 50px;
             left: 50px;
             background-color: white;
             border: 2px solid black;
@@ -31,10 +42,13 @@
 <body>
     <div id="map"></div>
     <input type="file" id="uploader">
+    <input type="file" id="input">
     <script src="web/zip.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.10.0/d3.min.js"></script>
     <script src="https://npmcdn.com/d3@3.5.17"></script>
     <script src="https://npmcdn.com/leaflet@0.7.7/dist/leaflet.js"></script>
     <script src="web/tile.stamen.js"></script>
+    <script src="web/leaflet.ajax.min.js"></script>
     <script src='web/gtfsParser.js'></script>
     <script src='web/main.js'></script>
     <!-- <script src="https://www.amcharts.com/lib/version/4.6.9/core.js"></script>
