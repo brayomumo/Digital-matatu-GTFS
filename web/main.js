@@ -127,7 +127,7 @@ function csv2array(data, delimeter) {
   
   return array;
 }
-const planes = document.getElementById('input').innerHTML
+// const planes = document.getElementById('input').innerHTML
 console.log(planes)
 // var reader = new FileReader();
 // reader.onload = function(e) {
@@ -137,12 +137,12 @@ console.log(planes)
 // reader.readAsText(abuseData);
 // var marker = L.marker([-1.286023, 36.825433]).addTo(map);
 // var popup = marker.bindPopup('<b>Abuse case 1</b><br />46 bus station abuse case.');
-// var planes =[
-//   ['assult',-1.245280, 36.867195],
-//  ['discrimanation',-1.286023, 36.825433],
-//  ['discrimanation',-1.284462, 36.832510],
-//  ['discrimanation',-1.286395, 36.834944]
-// ]
+var planes =[
+  ['assult',-1.245280, 36.867195],
+ ['discrimanation',-1.286023, 36.825433],
+ ['discrimanation',-1.284462, 36.832510],
+ ['discrimanation',-1.286395, 36.834944]
+]
 for (var i = 0; i < planes.length; i++) {
   marker = new L.marker([planes[i][1],planes[i][2]])
     .bindPopup(" <b>Abuse type: </b>" + planes[i][0])
