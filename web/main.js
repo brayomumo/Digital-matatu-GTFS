@@ -14,7 +14,7 @@ var strokeWidth = 3;
 var map = new L.Map("map", {center: [-1.285325, 36.834509], zoom: 10})
 const attribution  = '&copy;<a href= "https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors';
 const api_url = 'https://api.wheretheiss.at/v1/satellites/25544';
-const tileUrl = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
+const tileUrl = "https://a.tile.openstreetmap.org/{z}/{x}/{y}.png";
 const tiles = L.tileLayer(tileUrl, { attribution } )
 tiles.addTo(map)
 
@@ -32,36 +32,7 @@ var projectPoint = function(point) {
         pointCache[key] = map.latLngToLayerPoint(new L.LatLng(point[0], point[1]));
     }
     return pointCache[key];
-}
-
-function init() {
-  document.getElementById('fileInput').addEventListener('change', handleFileSelect, false);
-}
-
-function handleFileSelect(event) {
-  const reader = new FileReader()
-  reader.onload = handleFileLoad;
-  reader.readAsText(event.target.files[0])
-}
-
-function handleFileLoad(event) {
-  console.log(event);
-  var madata =  event.target.result;
-  madata = madata.split("\n")
-  var planes = []
-  for (var i = 1; i < madata.length; i++){
-    console.log(madata[i])
-    planes.append(i)
-  }
-  console.log(planes)
-  // for (var i = 0; i < planes.length; i++) {
-  //   marker = new L.marker([planes[i][1],planes[i][2]])
-  //     .bindPopup(" <b>Abuse type: </b>" + planes[i][0])
-  //     .addTo(map);
-  // }
-}
-
-  
+}  
 
 
 
@@ -98,26 +69,7 @@ var drawShapes = function(shapeRows) {
   svg.attr("width", bottomRight.x - topLeft.x)
   .attr("height", bottomRight.y - topLeft.y)
   .style("left", topLeft.x + "px")
-  .style("top", topLeft.y + "px").on("mouseover", function(){
-    tooltip.style("display", null)
-  }).on("mouseout", function(){
-    tooltip.style("display", None)
-  }).on("mousemove", function(d){
-    var xPos = d3.mouse(this)[0] -15
-    var yPos = d3.mouse(this)[1] - 55
-    tooltip.attr("transform", "translate("+ xPos + "," + yPos + ")");
-    tooltp.select("text").text(d.name + ":" + d.rank);
-  });
-
-  var tooltip = svg.append("g")
-    .attr("class", tooltip)
-    .style("display", "none");
-
-  tooltip.append("text")
-    .attr("x", 15)
-    .attr("dy", "1.2em")
-    .style("font-size", "1,25em")
-    .attr("font-weight", "bold");
+  .style("top", topLeft.y + "px")
 
 
   shapeHuskGroup.attr("transform", "translate(" + -topLeft.x + "," + -topLeft.y + ")");
@@ -310,6 +262,33 @@ var upload_button = function(el) {
 
 
 upload_button("uploader");
+
+document.getElementById('fileInput').addEventListener('change', handleFileSelect, false);
+
+
+function handleFileSelect(event) {
+  const reader = new FileReader()
+  reader.onload = handleFileLoad;
+  reader.readAsText(event.target.files[0])
+}
+
+function handleFileLoad(event) {
+  console.log(event);
+  var madata =  event.target.result;
+  madata = madata.split("\n")
+  var planes = []
+  for (var i = 1; i < madata.length; i++){
+    // console.log(madata[i])
+    planes.push(madata[i])
+  }
+  // console.log(planes)
+  for (var i = 0; i < planes.length; i++) {
+    planes = planes[i].split(",")
+    marker = new L.marker([planes[1],planes[2]])
+      .bindPopup(" <b>Abuse type: </b>" + planes[0])
+      .addTo(map);
+  }
+}
 
 map.on('viewreset', function() {
     resetShapes();
