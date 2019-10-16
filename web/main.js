@@ -9,7 +9,7 @@ var minLng;
 var maxLng;
 
 
-var strokeWidth = 3;
+var strokeWidth = 7;
 
 var map = new L.Map("map", {center: [-1.285325, 36.834509], zoom: 10})
 const attribution  = '&copy;<a href= "https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors';
@@ -42,10 +42,13 @@ var line = d3.svg.line()
     .x(function(d) { return projectPoint([d.lat, d.lon]).x; })
     .y(function(d) { return projectPoint([d.lat, d.lon]).y; })
 
+     
+
 var drawShapes = function(shapeRows) {
   pointCache = {};
 
   var shapes = shapeRows.reduce(combineShapeRows);
+  
 
   var lats = shapeRows.map(function(shape) { return shape.lat });
   var lngs = shapeRows.map(function(shape) { return shape.lon });
@@ -76,7 +79,7 @@ var drawShapes = function(shapeRows) {
   shapeGroup.attr("transform", "translate(" + -topLeft.x + "," + -topLeft.y + ")");
 
   shapeHusk = shapeHuskGroup.selectAll('.husk')
-  .data(d3.entries(shapes), function(d) { return d.key; })
+  .data(d3.entries(shapes), function(d) {return d.key; })
 
   shapeHusk.enter().append('path')
   .attr('class', 'husk')
@@ -92,7 +95,11 @@ var drawShapes = function(shapeRows) {
 
   feature = shapeGroup.selectAll('.feature')
   .data(d3.entries(shapes), function(d) { return d.key; })
-
+  
+  // feature.path.onpointerover(console.log("Wooow"))
+  
+  // feature.onpointerover.bindLabel('Lorem Ipsum')
+  console.log(feature.data.path,onpointerover)
   feature.enter().append('path')
   .attr('class', 'feature')
   .attr('d', function(d) { return line(d.value); })
@@ -101,7 +108,15 @@ var drawShapes = function(shapeRows) {
     fill: 'none',
     'stroke-width': strokeWidth,
     'stroke-opacity': 0.5
-  });
+  })
+  // .onpointerover(console.log("WOoow"))
+  
+    
+  // topLeft.bindPopup('Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.')
+    
+  // topLeft.addTo(map)
+    
+  // .fitBounds(topLeft.getBounds());
 
   feature.exit().remove();
 
@@ -166,7 +181,8 @@ var drawStops = function(data) {
   stopHusk.exit().remove();
 
   stopMarker = stopGroup.selectAll('.stop')
-  .data(data, function(d) { return d.id; })
+  .data(data, function(d) { return d.name; })
+  
 
   stopMarker.enter().append('circle')
   .attr('class', 'stop')
@@ -174,6 +190,7 @@ var drawStops = function(data) {
   .attr('cx', function(d) { return projectPoint([d.lat, d.lon]).x; })
   .attr('cy', function(d) { return projectPoint([d.lat, d.lon]).y; })
   .style('fill', '#35A9FC');
+  
 
   stopMarker.exit().remove();
 };
@@ -273,7 +290,7 @@ function handleFileSelect(event) {
 }
 
 function handleFileLoad(event) {
-  console.log(event);
+  // console.log(event);
   var madata =  event.target.result;
   madata = madata.split("\n")
   var allData = []
@@ -284,7 +301,7 @@ function handleFileLoad(event) {
   // console.log(planes)
   for (var i = 0; i < allData.length; i++) {
     planes = allData[i].split(",")
-    console.log(planes)
+    // console.log(planes)
     marker = new L.marker([planes[1],planes[2]])
       .bindPopup(" <b>Abuse type: </b>" + planes[0])
       .addTo(map);
