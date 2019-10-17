@@ -15,7 +15,7 @@ var map = new L.Map("map", {center: [-1.285325, 36.834509], zoom: 10})
 const attribution  = '&copy;<a href= "https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors';
 const api_url = 'https://api.wheretheiss.at/v1/satellites/25544';
 const tileUrl = "https://a.tile.openstreetmap.org/{z}/{x}/{y}.png";
-const tiles = L.tileLayer(tileUrl, { attribution } )
+// const tiles = L.tileLayer(tileUrl, { attribution } )
 tiles.addTo(map)
 
 
@@ -96,9 +96,8 @@ var drawShapes = function(shapeRows) {
   feature = shapeGroup.selectAll('.feature')
   .data(d3.entries(shapes), function(d) { return d.key; })
   
-  // feature.path.onpointerover(console.log("Wooow"))
   
-  // feature.onpointerover.bindLabel('Lorem Ipsum')
+  
   console.log(feature.data.path,onpointerover)
   feature.enter().append('path')
   .attr('class', 'feature')
@@ -109,14 +108,6 @@ var drawShapes = function(shapeRows) {
     'stroke-width': strokeWidth,
     'stroke-opacity': 0.5
   })
-  // .onpointerover(console.log("WOoow"))
-  
-    
-  // topLeft.bindPopup('Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.')
-    
-  // topLeft.addTo(map)
-    
-  // .fitBounds(topLeft.getBounds());
 
   feature.exit().remove();
 
