@@ -11,12 +11,12 @@ var maxLng;
 
 var strokeWidth = 7;
 
-var map = new L.Map("map", {center: [-1.285325, 36.834509], zoom: 10})
-const attribution  = '&copy;<a href= "https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors';
-const api_url = 'https://api.wheretheiss.at/v1/satellites/25544';
-const tileUrl = "https://a.tile.openstreetmap.org/{z}/{x}/{y}.png";
+// var map = new L.Map("map", {center: [-1.285325, 36.834509], zoom: 10})
+// const attribution  = '&copy;<a href= "https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors';
+// const api_url = 'https://api.wheretheiss.at/v1/satellites/25544';
+// const tileUrl = "https://a.tile.openstreetmap.org/{z}/{x}/{y}.png";
 // const tiles = L.tileLayer(tileUrl, { attribution } )
-tiles.addTo(map)
+// tiles.addTo(map)
 
 
 var svg = d3.select(map.getPanes().overlayPane).append("svg"),
@@ -271,7 +271,7 @@ var upload_button = function(el) {
 
 upload_button("uploader");
 
-document.getElementById('fileInput').addEventListener('change', handleFileSelect, false);
+// document.getElementById('fileInput').addEventListener('change', handleFileSelect, false);
 
 
 function handleFileSelect(event) {
