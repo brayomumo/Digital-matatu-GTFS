@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Traffic Guru</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
+
+    <!-- Theme CSS -->
+    <link href="css/agency.css" rel="stylesheet">
+
+
+    <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+    <script src="data/boston_neighborhoods.json"></script>
+    <script src="data/boston_rodents.json"></script>
+    <script src="data/nairobi.json"></script> 
+    <script src="jquery.js"></script>
+
+</head>
+
+<body id="page-top" class="index">
+
+    <!-- Navigation -->
+    <nav id="mainNav" class="navbar navbar-default navbar-custom navbar-fixed-top">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
+                </button>
+                <a class="navbar-brand page-scroll" href="#page-top">Traffic Guru</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="hidden">
+                        <a href="#page-top"></a>
+                    </li>
+                   
+                    <li>
+                        <a class="page-scroll" href="#team">Data</a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="#contact">Contact Traffic Guru</a>
+                    </li>
+
+                     <li>
+                        <a class="page-scroll" href="#contact"></a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
+    </nav>
+
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="intro-text">
+               <!--  <div class="intro-lead-in">Welcome To Our Studio!</div>
+                <div class="intro-heading">It's Nice To Meet You</div>
+                <a href="#services" class="page-scroll btn btn-xl">Tell Me More</a> -->
+                <script>
+
+                             // http://41.204.186.47:8000/GetLocations.php
+                            $.ajax({
+                            url : "http://41.204.186.47:8000/GetLocations.php",
+                            dataType : "json",
+                            data :"",
+
+                            success : 
+                            function (data){
+
+
+
+                            populate_map(data)
+                            }
+                            });
+
+
+                            
+                            function populate_map(pos_data){
+                                // console.log(pos_data.All[0]);
+                                var width = 1200;
+                            var height = 580;
+
+                            var svg = d3.select( "body" )
+                                .append( "svg" )
+                                .attr( "width", width )
+                                .attr( "height", height );
+
+                            var g = svg.append( "g" );
+
+
+                            var projection = d3.geo.mercator()
+                            .center([36.8, -1.3])
+                            .scale([100000])
+                            .translate([width/2, height/2]);
+
+                        var nairobipathing = d3.geo.path().projection(projection);
+
+                            g.selectAll( "path" )
+                                .data( data.geometries )
+                                .enter()
+                                .append( "path" )
+                                
+                                .attr( "class", "incident" )
+                                .attr( "stroke", "white")
+                                .attr( "d", nairobipathing );
+
+                                    var rscale = d3.scale.linear()
+                                      .domain([0,100])
+                                      .range([3,20])
+
+                                    var colorScale = d3.scale.ordinal().range(["#ff5733", "#33ffe9", "#ff33c4", "BDE7AE", "E17250", "ECF809", "FC6E61"]);
+
+
+                                  var color = d3.scale.threshold()
+                                    .domain([10, 30, 60, 80, 1000])
+                                    .range(["#00a6ff", "#6c00ff", "#FF5733", "#C70039", "#900C3F", "#581845"]);
+
+
+                                    // svg.selectAll(".points")
+                                    // .data(pos_data.All.sort(function(a, b) { return b.radius - a.radius; }))
+                                    // .enter()
+                                    // .append("circle")
+                                    // // .attr("class","bubble")
+                                    // .style("fill", function (d) { return color(d.radius);})
+                                    // .attr('r', function(d){
+                                    //       return rscale(d.radius);
+                                    //       // return d.radius;
+
+                                    //     })
+                                    // .attr("stroke","orange")
+                                    // .attr("transform", function(d) {return "translate(" + projection([d.longitude,d.latitude]) + ")";})
+                                    // .on("mouseover", function(d){
+                                    //     d3.select("h2").text(d.name+" (\napprox. "+d.radius+" observations)");
+                                    //     d3.select(this).attr("class","incident hover");
+                                    //     })
+                                    // .on("mouseout", function(d){
+                                    //     d3.select("h2").text("");
+                                    //     d3.select(this).attr("class","bubble");
+                                        
+                                    //     // d3.select(this).attr("class","incident");
+                                    //   });
+                                      
+                        }
+                             
+
+                            
+                            </script>
+            </div>
+        </div>
+    </header>
+
+ <!-- <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <span class="copyright">Copyright &copy; Your Website 2016</span>
+                </div>
+                <div class="col-md-4">
+                    <ul class="list-inline social-buttons">
+                        <li><a href="#"><i class="fa fa-twitter"></i></a>
+                        </li>
+                        <li><a href="#"><i class="fa fa-facebook"></i></a>
+                        </li>
+                        <li><a href="#"><i class="fa fa-linkedin"></i></a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <ul class="list-inline quicklinks">
+                        <li><a href="#">Privacy Policy</a>
+                        </li>
+                        <li><a href="#">Terms of Use</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer> -->
+
+    <!-- jQuery -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+
+    <!-- Contact Form JavaScript -->
+    <script src="js/jqBootstrapValidation.js"></script>
+    <script src="js/contact_me.js"></script>
+
+    <!-- Theme JavaScript -->
+    <script src="js/agency.min.js"></script>
+ <h2 class="copyright"></h2>
+</body>
+<div class="osoro">
+        <!-- <div class="container">
+            <div class="row">
+               
+            </div>
+        </div> -->
+    </div>
+
+</html>
