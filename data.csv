@@ -1,0 +1,43 @@
+choice_id , question_id ,  choice_text   ,                 question_text                  , total_count 
+         1 ,           3 , Private Car           , What mode of transport do you use daily?       ,           1
+        26 ,           3 , K1ibera         , What mode of transport do you use daily?       ,          11
+        15 ,           3 , Skip           , What mode of transport do you use daily?       ,           1
+        13 ,           3 , Yes            , What mode of transport do you use daily?       ,           1
+        34 ,           9 , 31-35          , What was the age group of the respondent?      ,          23
+         7 ,          11 , Matatu         , Surveyor name                                  ,           1
+        37 ,           6 , Male           , What form of transport do students use?        ,           9
+        36 ,           9 , Above 45       , What was the age group of the respondent?      ,          18
+        31 ,           9 , 14-18          , What was the age group of the respondent?      ,           8
+        37 ,          10 , Male           , What was the gender of the respondent?         ,          16
+        18 ,           6 , Private car    , What form of transport do students use?        ,           2
+        38 ,           7 , Female         , If you walk how long do you walk daily?       ,           1
+        10 ,           1 , Yes            , Does transport care for women?                 ,           1
+        38 ,           6 , Female         , What form of transport do students use?        ,          28
+        13 ,           5 , Yes            , Does transport care for students?              ,          60
+        15 ,           5 , Skip           , Does transport care for students?              ,           7
+         4 ,           3 , Yes            , What mode of transport do you use daily?       ,           6
+        32 ,           1 , 19-24          , Does transport care for women?                 ,           1
+         3 ,           7 , Skip           , If you walk how long do you walk daily?       ,           1
+        38 ,          10 , Female         , What was the gender of the respondent?         ,          53
+         1 ,           5 , Yes            , Does transport care for students?              ,           1
+         3 ,           4 , Skip           , Do you think transport cares for the disabled? ,           1
+        13 ,           6 , Yes            , What form of transport do students use?        ,           1
+        26 ,          10 , Kibera         , What was the gender of the respondent?         ,           1
+         2 ,           8 , No             , Which area was the respondent from?            ,           1
+        35 ,           9 , 36-45          , What was the age group of the respondent?      ,          15
+         4 ,           8 , Yes            , Which area was the respondent from?            ,           8
+        39 ,           6 , Michelle       , What form of transport do students use?        ,           1
+        32 ,           2 , 19-24          , Have you faced any form of abuse?              ,           1
+        35 ,           4 , 36-45          , Do you think transport cares for the disabled? ,           1
+        10 ,           2 , Yes            , Have you faced any form of abuse?              ,          19
+        21 ,           7 , 2 Km           , If you walk, how long do you walk daily?       ,           9
+         2 ,           4 , No             , Do you think transport cares for the disabled? ,          13
+        20 ,          10 , 1 Km           , What was the gender of the respondent?         ,           5
+        28 ,           2 , Kawangware     , Have you faced any form of abuse?              ,           2
+        19 ,           6 , Less than 1 Km , What form of transport do students use?        ,           5
+        19 ,          10 , Less than 1 Km , What was the gender of the respondent?         ,          22
+        20 ,           6 , 1 Km           , What form of transport do students use?        ,           4
+        11 ,           7 , No             , If you walk how long do you walk daily?       ,           1
+        40 ,           9 , Salma          , What was the age group of the respondent?      ,           1
+        13 ,           4 , Yes            , Do you think transport cares for the disabled? ,           3
+        26 ,           7 , Kibera         , If you walk how long do you walk daily?       ,           4
