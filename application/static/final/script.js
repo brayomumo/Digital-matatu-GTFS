@@ -9,17 +9,15 @@
  });
 
 
- $.ajax({
-    url: "/getdata",
-    dataType: "txt",
-    data: "",
+//  $.ajax({
+//     url: "/getdata",
+//     dataType: "json",
+//     data: "",
 
-    success: function (data) {
-        // 
-        console.log(data)
-    }
-});
-
+//     success: function (data) {
+//         trial = data
+//     }
+// });
 
 
 
@@ -44,32 +42,45 @@
      var pathing = d3.geoPath().projection(projection);
 
      //drawing bubbles
-     var rand_data = [{
-             lat: "-1.283894",
-             long: "36.825557"
-         },
-         {
-             lat: "-1.283894",
-             long: "36.825557"
-         }
-     ];
+    //  var rand_data = [{
+    //          lat: "-1.283894",
+    //          long: "36.825557"
+    //      },
+    //      {
+    //          lat: "-1.283894",
+    //          long: "36.825557"
+    //      }
+    //  ];
+
+     $.ajax({
+        url: "/getdata",
+        dataType: "json",
+        data: "",
+    
+        success: function (data) {
+            rand_data = data
+       
 
      g.selectAll("myCircles")
          .data(rand_data)
          .enter()
          .append("circle")
          .attr("cx", function (d) {
-             return projection([d.long, d.lat])[0]
+             console.log(d.coordinates[0])
+             return projection([d.coordinates[1], d.coordinates[0]])[0]
          })
          .attr("cy", function (d) {
-             return projection([d.long, d.lat])[1]
+             return projection([d.coordinates[1], d.coordinates[0]])[1]
          })
-         .attr("r", 14)
+         .attr("r", function(d){
+             return d.radius
+         })
          .style("fill", "69b3a2")
          .attr("stroke", "#69b3a2")
          .attr("stroke-width", 3)
          .attr("fill-opacity", .4)
-
+        }
+    });
 
      g.selectAll("path")
          .data(data.geometries)
@@ -106,8 +117,8 @@
          .projection(albersProjection);
 
      var projection = d3.geoMercator()
-         .center([36.75, -1.25])
-         .scale([55000])
+         .center([36.77, -1.27])
+         .scale([59000])
          .translate([width / 2, height / 2]);
 
      var nairobipathing = d3.geoPath().projection(projection);
