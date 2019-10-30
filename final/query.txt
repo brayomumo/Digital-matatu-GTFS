@@ -7,6 +7,7 @@ select qt.choice_id count(*) AS total_count from questions_triviafeedback group 
 
 select qt.choice_id,qt.question_id,q.choice_text,qq.question_text, count(*) AS total_count from questions_triviafeedback as qt left join questions_choice AS q on qt.choice_id=q.id left join questions_question qq on qt.question_id=qq.id group by qt.question_id,qt.choice_id,qt.question_id,q.choice_text,qq.question_text;
 
+\COPY  dummy  FROM '/home/smoucha/Documents/digitalmat/dummy.csv' CSV HEADER DELIMITER ',';
 
 
  id  ,  choice_text   ,                 question_text                  , question_id 
