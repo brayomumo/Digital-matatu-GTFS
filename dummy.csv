@@ -1,0 +1,51 @@
+   id,              question_text                  , choice_text 
+ 1,Does transport care for women?                 , Other
+ 2,Have you faced any form of abuse?              , Other
+ 3,What mode of transport do you use daily?       , Other
+ 4,Do you think transport cares for the disabled? , Other
+ 5,Does transport care for students?              , Other
+ 6,What form of transport do students use?        , Other
+ 7,If you walk how long do you walk daily?       , Other
+ 8,Which area was the respondent from?            , Other
+ 9,What was the age group of the respondent?      , Other
+ 10,What was the gender of the respondent?         , Other
+ 11,Surveyor name                                  , Other
+ 12,Does transport care for women?                 , Mathare
+ 13,Have you faced any form of abuse?              , Mathare
+ 14,What mode of transport do you use daily?       , Mathare
+ 15,Do you think transport cares for the disabled? , Mathare
+ 16,Does transport care for students?              , Mathare
+ 17,What form of transport do students use?        , Mathare
+ 18,If you walk how long do you walk daily?       , Mathare
+ 19,Which area was the respondent from?            , Mathare
+ 20,What was the age group of the respondent?      , Mathare
+ 21,What was the gender of the respondent?         , Mathare
+ 22,Surveyor name                                  , Mathare
+ 23,Does transport care for women?                 , Kawangware
+ 24,Have you faced any form of abuse?              , Kawangware
+ 25,What mode of transport do you use daily?       , Kawangware
+ 26,Do you think transport cares for the disabled? , Kawangware
+ 27,Does transport care for students?              , Kawangware
+ 28,What form of transport do students use?        , Kawangware
+ 29,If you walk how long do you walk daily?       , Kawangware
+ 30,Which area was the respondent from?            , Kawangware
+ 31,What was the age group of the respondent?      , Kawangware
+ 32,What was the gender of the respondent?         , Kawangware
+ 33,Surveyor name                                  , Kawangware
+ 34,Does transport care for women?                 , Babadogo
+ 35,Have you faced any form of abuse?              , Babadogo
+ 36,What mode of transport do you use daily?       , Babadogo
+ 37,Do you think transport cares for the disabled? , Babadogo
+ 38,Does transport care for students?              , Babadogo
+ 39,What form of transport do students use?        , Babadogo
+ 40,If you walk how long do you walk daily?       , Babadogo
+ 41,Which area was the respondent from?            , Babadogo
+ 42,What was the age group of the respondent?      , Babadogo
+ 43,What was the gender of the respondent?         , Babadogo
+ 44,Surveyor name                                  , Babadogo
+ 45,Does transport care for women?                 , Kibera
+ 46,Have you faced any form of abuse?              , Kibera
+ 47,What mode of transport do you use daily?       , Kibera
+ 48,Do you think transport cares for the disabled? , Kibera
+ 49,Does transport care for students?              , Kibera
+ 50,What form of transport do students use?        , Kibera
