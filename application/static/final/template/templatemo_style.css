@@ -323,6 +323,6 @@ em { color: #CCCC66; }
 .trial{
 	fill: aquamarine
 }
-.incident :hover{
-	fill: #333;
+.myCircles:hover{
+	fill:red;
 }
