@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from opencage.geocoder import OpenCageGeocode
-from.models import datatable,areaQuestionData,finalData
+from.models import datatable,areaQuestionData,finalData,allData
 import json
 from django.http import JsonResponse
 
@@ -8,8 +8,21 @@ from django.http import JsonResponse
 
 
 def index(request):
-    
-    return render(request, 'index.html')
+    questions = allData.objects.all()
+    allQuestions = []
+    for i in questions:
+        p1 = i.question_text
+        allQuestions.append(p1)
+
+    allQuestions =list(set(allQuestions))
+    ids = []
+    count = 0
+    for x in allQuestions:
+        count +=1
+        ids.append(count)
+
+    data = zip(allQuestions, ids)
+    return render(request, 'index.html', {"questions":data})
 
 
 def getData(request):
@@ -43,9 +56,7 @@ def getData(request):
         data.append(p1)
         radius.append(count)
 
-    for u in data:
-        print(u.coordinates)
-
+    print("Getting data .....")
     areaData = json.dumps([ob.__dict__ for ob in data])
 
     # print(radius)

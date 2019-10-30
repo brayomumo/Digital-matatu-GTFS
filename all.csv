@@ -1,0 +1,52 @@
+id  ,  choice_text   ,                 question_text                  , question_id 
+    1 , Yes            , Does transport care for women?                 ,           1
+    2 , Yes            , Do you think transport cares for the disabled? ,           4
+    3 , Yes            , Does transport care for students?              ,           5
+    4 , Yes            , Does transport care for women?                 ,           1
+    5 , Yes            , Do you think transport cares for the disabled? ,           4
+    6 , Skip           , Have you faced any form of abuse?              ,           2
+    7 , No             , What mode of transport do you use daily?       ,           3
+    8 , No             , If you walk how long do you walk daily?       ,           7
+    9 , Yes            , What form of transport do students use?        ,           6
+   10 , Yes            , Does transport care for students?              ,           5
+   11 , Yes            , Does transport care for women?                 ,           1
+   12 , Yes            , Do you think transport cares for the disabled? ,           4
+   13 , Skip           , What mode of transport do you use daily?       ,           3
+   14 , No             , If you walk how long do you walk daily?       ,           7
+   15 , No             , What form of transport do students use?        ,           6
+   16 , Yes            , Have you faced any form of abuse?              ,           2
+   17 , Yes            , Does transport care for students?              ,           5
+   18 , Yes            , Do you think transport cares for the disabled? ,           4
+   19 , Yes            , Does transport care for women?                 ,           1
+   20 , Matatu         , What form of transport do students use?        ,           6
+   21 , Yes            , Does transport care for students?              ,           5
+   22 , Yes            , Do you think transport cares for the disabled? ,           4
+   23 , Yes            , Have you faced any form of abuse?              ,           2
+   24 , Yes            , Does transport care for students?              ,           5
+   25 , No             , Does transport care for women?                 ,           1
+   26 , Skip           , Do you think transport cares for the disabled? ,           4
+   27 , Yes            , Does transport care for students?              ,           5
+   28 , No             , Does transport care for women?                 ,           1
+   29 , No             , Do you think transport cares for the disabled? ,           4
+   30 , Yes            , What mode of transport do you use daily?       ,           3
+   31 , Yes            , If you walk how long do you walk daily?       ,           7
+   32 , No             , Does transport care for students?              ,           5
+   33 , 19-24          , What was the age group of the respondent?      ,           9
+   34 , No             , Does transport care for women?                 ,           1
+   35 , Yes            , Do you think transport cares for the disabled? ,           4
+   36 , Yes            , Have you faced any form of abuse?              ,           2
+   37 , Kawangware     , Which area was the respondent from?            ,           8
+   38 , No             , Have you faced any form of abuse?              ,           2
+   39 , Matatu         , What mode of transport do you use daily?       ,           3
+   40 , 1 Km           , If you walk how long do you walk daily?       ,           7
+   41 , 3 Km           , What was the gender of the respondent?         ,          10
+   42 , Female         , What form of transport do students use?        ,           6
+   43 , Matatu         , Surveyor name                                  ,          11
+   44 , Yes            , Does transport care for students?              ,           5
+   45 , Above 45       , What was the age group of the respondent?      ,           9
+   46 , Yes            , Does transport care for women?                 ,           1
+   47 , Yes            , Do you think transport cares for the disabled? ,           4
+   48 , Kawangware     , Which area was the respondent from?            ,           8
+   49 , Matatu         , What mode of transport do you use daily?       ,           3
+   50 , 2 Km           , If you walk how long do you walk daily?       ,           7
+   51 , Female         , What was the gender of the respondent?         ,          10
