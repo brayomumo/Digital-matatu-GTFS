@@ -13,14 +13,15 @@ class datatable(models.Model):
         return self.choice_id
 
 class allData(models.Model):
-    choice_id = models.IntegerField()
+    # choice_id = models.IntegerField()
     choice_text = models.CharField(max_length=200)
     question_text = models.CharField(max_length=200)
     question_id = models.IntegerField()
 
 
     def __str__(self):
-        return self.choice_id
+        return self.question_text
+
 
     
 
