@@ -22,5 +22,6 @@ def getData(request):
         NewList = results[0]['geometry']['lat'] , results[0]['geometry']['lng']
         geocoordinates.append(NewList)
         
-    print(geocoordinates)
+    # print(geocoordinates)
     return geocoordinates
+    
