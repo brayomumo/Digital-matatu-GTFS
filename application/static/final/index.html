@@ -42,7 +42,9 @@
             <div class="col-md-6">
                 <h5>Drop Down</h5>
                 <select>
-                    
+                    {% for question in questions %}
+                        <option>{{ question}}</option>
+                    {% endfor %}
                 </select>
             </div>
         </div>
