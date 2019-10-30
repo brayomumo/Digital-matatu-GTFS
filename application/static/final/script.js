@@ -60,63 +60,7 @@
         success: function (data) {
             rand_data = data
        
-            $(document).ready(function() {
-                $("#1").click(function() {
-                    color = "#5A1101 "
-                    return color
-                });
-                $("#2").click(function() {
-                    color = "#5A1101 "
-                    return color
-                });
-                $("#3").click(function() {
-                    color = "#5A1101 "
-                    return color
-                });
-                $("#4").click(function() {
-                    color = "#5A1101 "
-                    return color
-                });
-                $("#5").click(function() {
-                    color = "#5A1101 "
-                    return color
-                });
-                $("#6").click(function() {
-                    color = "#5A1101 "
-                    return color
-                })
-                $("#7").click(function() {
-                    color = "#5A1101 "
-                    return color
-                });
-                $("#8").click(function() {
-                    color = "#5A1101 "
-                    return color
-                });
-                $("#9").click(function() {
-                    color = "#5A1101 "
-                    return color
-                });
-                $("#10").click(function() {
-                    color = "#5A1101 "
-                    return color
-                });
-                $("#11").click(function() {
-                    color = "#5A1101 "
-                    return color
-                });
-                v
-        
-                $("button#yellow").click(function() {
-                  $("body").removeClass();
-                  $("body").addClass("yellow-background");
-                });
-        
-                $("button#red").click(function() {
-                  $("body").removeClass();
-                  $("body").addClass("red-background");
-                });
-              });
+            
      g.selectAll("myCircles")
          .data(rand_data)
          .enter()
@@ -131,10 +75,13 @@
          .attr("r", function(d){
              return d.radius
          })
-         .style("fill", "color")
+         .style("fill", "69b3a2")
          .attr("stroke", "#000000")
          .attr("stroke-width", 2)
          .attr("fill-opacity", 0.1)
+         .on('click', function(d, i) {
+            console.log("click", d);
+          })
         }
     });
 
