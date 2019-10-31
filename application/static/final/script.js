@@ -5,6 +5,7 @@
 
      success: function (data) {
          drawing(data)
+         drawingCircles()
      }
  });
 
@@ -52,14 +53,66 @@
     //      }
     //  ];
 
-     $.ajax({
+
+
+     g.selectAll("path")
+         .data(data.geometries)
+         .enter()
+         .append("path")
+         .attr("fill", "#ccc")
+         .attr("class", "inci")
+         .attr("stroke", "#333")
+         .attr("d", pathing);
+ }
+ // -1- Create a tooltip div that is hidden by default:
+ var tooltip = d3.select(".map")
+ .append("div")
+   .style("opacity", 0)
+   .attr("class", "tooltip")
+   .style("background-color", "black")
+   .style("border-radius", "5px")
+   .style("padding", "10px")
+   .style("color", "white")
+
+// -2- Create 3 functions to show / update (when mouse move but stay on same circle) / hide the tooltip
+var showTooltip = function(d) {
+ tooltip
+   .transition()
+   .duration(200)
+ tooltip
+   .style("opacity", 1)
+   .html("Place: " + d.name)
+   .style("left", (d3.mouse(this)[0]+30) + "px")
+   .style("top", (d3.mouse(this)[1]+30) + "px")
+}
+var moveTooltip = function(d) {
+ tooltip
+   .style("left", (d3.mouse(this)[0]+30) + "px")
+   .style("top", (d3.mouse(this)[1]+30) + "px")
+}
+var hideTooltip = function(d) {
+ tooltip
+   .transition()
+   .duration(200)
+   .style("opacity", 0)
+}
+
+ function drawingCircles(){
+    $.ajax({
         url: "/getdata",
         dataType: "json",
         data: "",
     
         success: function (data) {
-            rand_data = data
-       
+        rand_data = data
+
+        var g = svg.append("g");
+        var projection = d3.geoMercator()
+            .center([36.8, -1.3])
+            .scale([90000])
+            .translate([width / 2, height / 2]);
+
+        var pathing = d3.geoPath().projection(projection);
             
      g.selectAll("myCircles")
          .data(rand_data)
@@ -79,23 +132,14 @@
          .attr("stroke", "#000000")
          .attr("stroke-width", 2)
          .attr("fill-opacity", 0.1)
-         .on('click', function(d, i) {
-            console.log("click", d);
-          })
+         .on("mouseover", showTooltip )
+    .on("mousemove", moveTooltip )
+    .on("mouseleave", hideTooltip )
+
+          
         }
     });
-
-     g.selectAll("path")
-         .data(data.geometries)
-         .enter()
-         .append("path")
-         .attr("fill", "#ccc")
-         .attr("class", "inci")
-         .attr("stroke", "#333")
-         .attr("d", pathing);
  }
-
-
  $.ajax({
      url: "https://raw.githubusercontent.com/brayomumo/Digital-matatu-GTFS/master/final/route_shapes.geojson",
      dataType: "json",
