@@ -242,10 +242,12 @@ function populate_map(pos_data) {
         .data(pos_data.features)
         .enter()
         .append("path")
-        .attr("fill", "#ccc")
+        .attr("fill", "blue")
         .attr("class", "incident")
         .attr("stroke", "#334")
-        .attr("d", nairobipathing);
+        .attr("d", nairobipathing)
+        .style("stroke", "blue")
+
 
 
 
