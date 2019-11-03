@@ -9,6 +9,8 @@ select qt.choice_id,qt.question_id,q.choice_text,qq.question_text, count(*) AS t
 
 \COPY  dummy  FROM '/home/smoucha/Documents/digitalmat/dummy.csv' CSV HEADER DELIMITER ',';
 
+select quesrtion 1, get time stamp for question 1, get location for each time stamp, 
+
 
  id  ,  choice_text   ,                 question_text                  , question_id 
     1 , Yes            , Does transport care for women?                 ,           1
