@@ -9,10 +9,15 @@ $.ajax({
     }
 });
 
-var color = d3.scaleThreshold()
-.domain([10,100])
-.range(["#00a6ff", "#6c00ff", "#FF5733", "#C70039", "#900C3F", "#581845"]);
 
+
+var rscale = d3.scaleLinear()
+.domain([0, 100])
+.range([3, 20])
+
+var colorScale = d3.scaleOrdinal().range(["#ff5733", "#33ffe9", "#ff33c4", "BDE7AE", "E17250", "ECF809",
+"FC6E61"
+]);
 function getRandomArbitrary(min, max) {
     return Math.random() * (max - min) + min;
 }
@@ -52,21 +57,10 @@ $('.country').on('change', function (e) {
                     return projection([d.coordinates[1], d.coordinates[0]])[1]
                 })
                 .attr("r",20)
-                .style("fill", (d) => {
-                    if (d.name == "Kibera"){
-                        return "red"
-                    }
-                    else if (d.name == "Kawangware"){
-                        return "blue"
-                    }else if(d.name == "Babandogo"){
-                        return "black"
-                    }else{
-                        return "green"
-                    }
-                    })
+                .style("fill","#190707" )
                 .attr("stroke", (d) => {
                     var leng  = ((d.choices).length) *10
-                    var colorIndex = color(Math.floor (getRandomArbitrary(10,leng)))
+                    var colorIndex = colorScale(Math.floor (getRandomArbitrary(10,leng)))
                     console.log(colorIndex)
                     return colorIndex
                     })
@@ -246,7 +240,9 @@ function populate_map(pos_data) {
         .attr("class", "incident")
         .attr("stroke", "#334")
         .attr("d", nairobipathing)
-        .style("stroke", "blue")
+        .style("stroke", (d, i) =>{
+            return colorScale(i)
+        })
 
 
 
@@ -290,13 +286,7 @@ function populate_map(pos_data) {
             ]) + ")";
         });
 
-    var rscale = d3.scaleLinear()
-        .domain([0, 100])
-        .range([3, 20])
-
-    var colorScale = d3.scaleOrdinal().range(["#ff5733", "#33ffe9", "#ff33c4", "BDE7AE", "E17250", "ECF809",
-        "FC6E61"
-    ]);
+  
 
 
 
