@@ -28,6 +28,7 @@ def findCoordinate(PlaceName):
 
 
 def index(request):
+    count = 0
     questions = allData.objects.all()
     allQuestions = []
     for i in questions:
@@ -38,10 +39,13 @@ def index(request):
         allQuestions.append(zipped)
     
     allQuestions =list(set(allQuestions))
-    #--------------------------mappings-----------------------------
+    for u in organisedData:
+        count +=1
+
+    nam = "pekejeng"
     
    
-    return render(request, 'index.html', {"questions":allQuestions})
+    return render(request, 'index.html', {"questions":allQuestions}, {"totalLocations":count})
 
 # def parca_kayit(request):
 #     print("Accessing parca_kayit")
