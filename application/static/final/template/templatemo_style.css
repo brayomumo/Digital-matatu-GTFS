@@ -10,11 +10,19 @@ body {
 	font-size: 13px;
 	line-height:1.5em; 
 	background-color: #ffffff;
+	/* fill: #ccc; */
 	/* background-image: url("{% static '/images/templatemo_body.png' %}"); */
 	background-repeat: repeat-x;
 }
-.back{
-	background-color: #ccc;
+.yetu{
+	background-image: url(https://miro.medium.com/max/1406/1*SAtEiG4Pt-PAypkzsYYkWw.png);
+	height: 300px;
+	background-size: 100%;
+	color: white;
+	text-align: center;
+}
+ .back{
+	fill: #ccc;
 }
 a, a:link, a:visited {
 	color: #CCCC66;
@@ -116,8 +124,8 @@ em { color: #CCCC66; }
 
 }
 
-#templatemo_header {
-	/* width: 1200px; */
+.kichwa {
+	width: 100%;
 	height: 300px;
 	background: url(images/templatemo_header.jpg) no-repeat;
 	background-size: 100%;
@@ -163,7 +171,7 @@ em { color: #CCCC66; }
 	background: url(images/templatemo_menu_hover.png) no-repeat;
 }
 
-#templatemo_header  h2 {
+ h2 {
 	clear: both;
 	float: left;
 	font-size: 30px;
@@ -171,12 +179,12 @@ em { color: #CCCC66; }
 	padding: 120px 0 0 30px;
 }
 
-#templatemo_header  #site_title h1 {
+.kichwa  #site_title h1 {
 	margin: 0;
 	padding: 0;
 }
 
-#templatemo_header  #site_title h1 a {
+  .kichwa #site_title h1 a {
 	margin: 0px;
 	padding: 0px;
 	font-size: 38px;
@@ -185,11 +193,11 @@ em { color: #CCCC66; }
 	text-decoration: none;
 }
 
-#templatemo_header  #site_title h1 a strong {
+.kichwa  #site_title h1 a strong {
 	color: #FFFF33;
 }
 
-#templatemo_header  #site_title a span {
+ #site_title a span {
 	display: block;
 	font-size: 14px;
 	color: #2e2c27;
@@ -304,7 +312,9 @@ em { color: #CCCC66; }
 	font-size: 20px;
 	font-weight: bold;
 }
-
+body{
+	fill: #ccc;
+}
 .bubble {
 	fill-opacity: .5;
 	stroke: #fff;
