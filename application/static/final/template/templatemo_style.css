@@ -5,15 +5,17 @@ Credit: http://www.templatemo.com
 body {
 	margin: 0px;
 	padding: 0px;
-	color: #e7e0cf;
+	color: black;
 	font-family: Helevetica,Arial,sans-serif;
 	font-size: 13px;
 	line-height:1.5em; 
-	background-color: #ebe8dd;
+	background-color: #ffffff;
 	/* background-image: url("{% static '/images/templatemo_body.png' %}"); */
 	background-repeat: repeat-x;
 }
-
+.back{
+	background-color: #ccc;
+}
 a, a:link, a:visited {
 	color: #CCCC66;
 }
@@ -115,9 +117,10 @@ em { color: #CCCC66; }
 }
 
 #templatemo_header {
-	width: 970px;
+	/* width: 1200px; */
 	height: 300px;
 	background: url(images/templatemo_header.jpg) no-repeat;
+	background-size: 100%;
 }
 
 #templatemo_menu {
